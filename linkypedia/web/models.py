@@ -60,6 +60,12 @@ class Link(m.Model):
     target = m.TextField()
     website = m.ForeignKey('Website', related_name='links')
 
+class AuthRecord(m.Model):
+    created = m.DateTimeField(auto_now_add=True)
+    modified = m.DateTimeField(auto_now=True)
+    link = m.ForeignKey(Link, related_name='auth_record')
+    marcxml = m.TextField(blank=True)
+
 class Website(m.Model):
     url = m.TextField()
     name = m.TextField()
